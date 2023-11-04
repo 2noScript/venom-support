@@ -32,7 +32,7 @@ const venom_support_proxy_image='https://venom-suport.onrender.com'
 ```html
 <!-- use -->
 
-<img src="venom_support_proxy_image" alt="" />
+<img src="url" alt="" />
 ```
 
 ☆*: .｡. o(≧▽≦)o .｡.:*☆ 🤖😵‍💫!
