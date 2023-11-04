@@ -1,17 +1,17 @@
 ### FREE deploy
 
-#####Vercel
+##### Vercel
 
 - https://venom-support.vercel.app
 
-#####Render
+##### Render
 
 - https://venom-suport.onrender.com
 - https://venom-suport-01.onrender.com
 - https://venom-suport-02.onrender.com
 - https://venom-suport-03.onrender.com
 
-#####cyclic
+##### cyclic
 
 - https://long-erin-duckling.cyclic.app
 
@@ -35,4 +35,7 @@ const venom_support_proxy_image='https://venom-suport.onrender.com'
 <img src="venom_support_proxy_image" alt="" />
 ```
 
-> Everything is free, sometimes the server will be paused when there are no requests
+☆*: .｡. o(≧▽≦)o .｡.:*☆ 🤖😵‍💫!
+
+> - Everything is free, sometimes the server will be paused when there are no requests
+> - Using caching, data is refreshed every 3 hours when there are 2 different requests
