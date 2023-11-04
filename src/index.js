@@ -8,7 +8,7 @@ const port = process.env.PORT || 4003;
 const server = express();
 const cache = new NodeCache();
 
-const oneDaySeconds = 24 * 60 * 60;
+const oneDaySeconds = 3 * 60 * 60;
 
 server.get("/", (req, res, next) => {
   res.send("server on");
