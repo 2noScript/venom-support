@@ -25,9 +25,9 @@ server.get("/proxy", async (req, res, next) => {
   if (!browserHeader) {
     try {
       const { data } = await axios.get(
-        "https://http-support.vercel.app/generate-browser-headers?limit=10"
+        "https://http-support.vercel.app/generate-browser-headers?limit=100"
       );
-      cache.set("browser-header", data);
+      cache.set("browser-header", data, exBrowserHeaderTime);
       browserHeader = data;
     } catch {
       browserHeader = [];
