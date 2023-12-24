@@ -23,14 +23,19 @@ server.get("/proxy", async (req, res, next) => {
   let browserHeader = cache.get("browser-header");
 
   if (!browserHeader) {
-    try {
-      const { data } = await axios.get(
-        "https://http-support.vercel.app/generate-browser-headers?limit=100"
-      );
-      cache.set("browser-header", data, exBrowserHeaderTime);
-      browserHeader = data;
-    } catch {
-      browserHeader = [];
+    for (let i = 0; i < 10; i++) {
+      try {
+        const { data } = await axios.get(
+          "https://http-support.vercel.app/generate-browser-headers?limit=100"
+        );
+        if (data) {
+          cache.set("browser-header", data, exBrowserHeaderTime);
+          browserHeader = data;
+          break;
+        }
+      } catch {
+        continue;
+      }
     }
   }
 
@@ -46,26 +51,39 @@ server.get("/proxy", async (req, res, next) => {
     console.log("Data found in cache");
     res.send(cachedData);
   } else {
-    try {
-      const response = await axios.get(url, {
-        responseType: "arraybuffer",
-        headers: {
-          referer: src,
-          origin: src,
-          "X-Requested-With": "XMLHttpRequest",
-          ...sample(browserHeader),
-        },
-        timeout: 10000,
-      });
+    let response;
+    let error;
+    for (let i = 0; i < 10; i++) {
+      try {
+        const res = await axios.get(url, {
+          responseType: "arraybuffer",
+          headers: {
+            referer: src,
+            origin: src,
+            "X-Requested-With": "XMLHttpRequest",
+            ...sample(browserHeader),
+          },
+          timeout: 10000,
+        });
+        response = res;
+        break;
+      } catch (err) {
+        error = err;
+        continue;
+      }
+    }
 
+    if (response && response?.data) {
       const dataStream = response.data;
       const contentType = response.headers["content-type"];
       cache.set(url, dataStream, existenceTime);
       res.setHeader("Content-Type", contentType);
       res.send(dataStream);
-    } catch (error) {
+    } else if (error) {
       console.error("Error fetching data:", error);
       res.status(404).json({ error });
+    } else {
+      res.send("Fix bugs 😵‍💫");
     }
   }
 });
