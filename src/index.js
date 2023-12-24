@@ -58,8 +58,8 @@ server.get("/proxy", async (req, res, next) => {
         const res = await axios.get(url, {
           responseType: "arraybuffer",
           headers: {
-            referer: src,
-            origin: src,
+            Referer: src,
+            Origin: src,
             "X-Requested-With": "XMLHttpRequest",
             ...sample(browserHeader),
           },
@@ -83,7 +83,9 @@ server.get("/proxy", async (req, res, next) => {
       console.error("Error fetching data:", error);
       res.status(404).json({ error });
     } else {
-      res.send("Fix bugs 😵‍💫");
+      res.status(404)({
+        message: "Fix bugs 😵‍💫",
+      });
     }
   }
 });
