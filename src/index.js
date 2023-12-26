@@ -83,7 +83,7 @@ server.get("/proxy", async (req, res, next) => {
       console.error("Error fetching data:", error);
       res.status(404).json({ error });
     } else {
-      res.status(404)({
+      res.status(404).json({
         message: "Fix bugs 😵‍💫",
       });
     }
