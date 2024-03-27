@@ -1,4 +1,4 @@
-### FREE deploy
+<!-- ### FREE deploy
 
 ##### Vercel
 
@@ -38,4 +38,4 @@ const venom_support_proxy_image='https://venom-suport.onrender.com'
 ☆*: .｡. o(≧▽≦)o .｡.:*☆ 🤖😵‍💫!
 
 > - Everything is free, sometimes the server will be paused when there are no requests
-> - Using caching, data is refreshed every 3 hours when there are 2 different requests
+> - Using caching, data is refreshed every 3 hours when there are 2 different requests -->
